@@ -1,0 +1,13 @@
+# pip install -r requirements.txt
+# pip freeze
+# pip uninstall -r requirements.txt
+# pip freeze >> requirements.txt
+
+pip==24.3.1
+
+Flask-CORS~=5.0.0
+flask-sqlalchemy
+flask-restful-swagger
+Flask~=3.1.0
+Flask-RESTful~=0.3.10
+SQLAlchemy~=2.0.36

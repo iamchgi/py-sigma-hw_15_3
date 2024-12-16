@@ -1,20 +1,26 @@
+"""
+Модуль обробки запитів
+"""
+
 from http import HTTPStatus
 
 from flask import request, jsonify, Response, make_response
 from flask_restful import Resource
 
 from application.application import LibraryRepository
-from templates.templates import create_html_list_all, create_html_list_one, create_html_info, create_html_new, \
+from application.templates import create_html_list_all, create_html_list_one, create_html_info, create_html_new, \
     create_html_edit
 
 library_repo = LibraryRepository
 
 
+# Клас роботи з книгою: запроси на генерування форми вводу нової книги
 class New(Resource):
     def get(self):
         return Response(create_html_new(), HTTPStatus.OK, mimetype='text/html')
 
 
+# Клас роботи з книгою: редагування, видалення, запроси на генерування форми редагування
 class Edit(Resource):
     def get(self, book_id):
         book = library_repo.get_book_by_id(book_id)
@@ -34,6 +40,7 @@ class Edit(Resource):
         return make_response(f"Error get method -> {form}", HTTPStatus.INTERNAL_SERVER_ERROR)
 
 
+# запроси на сторінку інформації про бібліотеку
 class Info(Resource):
     def get(self):
         count = library_repo.get_count_books()
@@ -42,7 +49,7 @@ class Info(Resource):
 
 
 class BookList(Resource):  # репрезентація ресурсу список книг
-    def get(self) -> Response:  # отримати список всіх студентів - http_calls - students.http
+    def get(self) -> Response:  # отримати список всіх книг
         list_all = library_repo.get_all_books()
         return Response(create_html_list_all(list_all), HTTPStatus.OK, mimetype='text/html')
         # return jsonify(library_repo.get_all_books())
@@ -55,6 +62,7 @@ class BookList(Resource):  # репрезентація ресурсу спис�
         return make_response(jsonify("Created"), HTTPStatus.CREATED)
 
 
+# Клас частково роботи з прямими запросами (не з WEB форми) PUT та DELETE (форма не підтримує)
 class Book(Resource):  # репрезентація ресурсу книга
     def get(self, book_id: int) -> Response:  # отримати дані книги
         book = library_repo.get_book_by_id(book_id)

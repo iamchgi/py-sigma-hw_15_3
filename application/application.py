@@ -1,7 +1,6 @@
 """
 Модуль - бізнес-модель - застосування БД - робота з полями БД
-Логіка може бути будь-яка, на ВАШУ думку.
-Пу суті - маємо сценарій дій / операцій над структурою даних "студент"
+операцій над структурою даних "книга"
 
 """
 
@@ -39,7 +38,8 @@ class LibraryRepository:
     def get_book_by_id(cls, book_id: int) -> BookDTO:  # отримати з БД книгу за id
         db_row = BookDBModel.query.filter_by(id=book_id).first()
         if not db_row:
-            raise ValueError(f"Not found Student {book_id}")
+            return None
+            # raise ValueError(f"Not found Book {book_id}")
 
         return BookDTO(
             id=db_row.id,

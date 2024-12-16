@@ -1,17 +1,16 @@
 """
-Модель структури даних "студент" - для представлення:
+Модель структури даних "книга" - для представлення:
 DTO: Data Transfer Object — один із шаблонів проєктування, який використовують для передачі даних між підсистемами програми.
 """
 
 from dataclasses import dataclass
 
 
-@dataclass                                                      # декоратор для додавання даних
+@dataclass                      # декоратор для додавання даних
 class BookDTO:
     """
     Book information
     """
-
     title: str
     author: str
     publisher: str
@@ -21,6 +20,6 @@ class BookDTO:
     famous: bool = False
     full_info = ""
     
-    def __post_init__(self):                                    # дандер метод __post_init__ заповнює поля після створення екземпляру класа
+    def __post_init__(self):   # дандер метод __post_init__ заповнює поля після створення екземпляру класа
         self.famous = self.author != "no name"
         self.full_info = f"{self.title} {self.author} {self.genre}"

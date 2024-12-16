@@ -39,7 +39,8 @@ class LibraryRepository:
     def get_book_by_id(cls, book_id: int) -> BookDTO:  # отримати з БД книгу за id
         db_row = BookDBModel.query.filter_by(id=book_id).first()
         if not db_row:
-            raise ValueError(f"Not found Student {book_id}")
+            return None
+            # raise ValueError(f"Not found Book {book_id}")
 
         return BookDTO(
             id=db_row.id,

@@ -24,7 +24,7 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input[type="text"], input[type="email"] {
+        input[type="title"], input[type="author"], input[type="publisher"], input[type="genre"], input[type="published"] {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
@@ -45,14 +45,23 @@
     </style>
 </head>
 <body>
-    <form action="/submit" method="POST">
+    <form action="/library" method="POST">
         <h2>Send a POST Request</h2>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <label for="title">Назва:</label>
+        <input type="text" id="title" name="title" placeholder="Enter your book`s title" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <label for="author">Автор:</label>
+        <input type="text" id="author" name="author" placeholder="Enter you book`s author" required>
+
+        <label for="publisher">Видавник</label>
+        <input type="text" id="publisher" name="publisher" placeholder="Enter your book`s publisher" required></input>
+
+        <label for="genre">Жанр:</label>
+        <input type="text" id="genre" name="genre" placeholder="Enter your book`s genre" required></input>
+
+        <label for="published">Рік:</label>
+        <input type="number" id="published" name="published" placeholder="Enter your book`s published year" required></input>
 
         <button type="submit">Submit</button>
     </form>
